@@ -27,4 +27,33 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### 0906 
+```
+父子传值：
+  自定义事件 子this.$emit('dislike',value)  父 @dislike="dislikeFn" 
+  自定义属性
+```
+```
+axios 拦截器
+
+axios.interceptors.request.use( // 当状态码为2xx/3xx开头的进这里
+  (config) => {
+    // 显示 loading 效果
+    Toast.loading({
+      message: "加载中...",
+      duration: 0
+    })
+    // 为请求 添加自定义字段 token 认证
+    const token = store.state.tokenInfo.token
+    console.log("请求拦截器token", store.state)
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error)
+  }
+)
+```
 ### 频道管理_新增频道 0907还没做

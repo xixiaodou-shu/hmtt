@@ -19,11 +19,11 @@
       </div>
       <!-- 我的频道列表 -->
       <van-row type="flex">
-        <van-col span="6" v-for="item in userChannelList" :key="item.id">
+        <van-col span="6" v-for="item in userChannelList" :key="item.id"  @click="removeFn(item)" >
           <div class="channel-item van-hairline--surround">
             {{ item.name}}
             <!-- 删除的徽标 isEdit是不是删除状态的时候去掉删除号-->
-            <van-badge color="transparent" class="cross-badge" v-if="isEdit">
+            <van-badge color="transparent" class="cross-badge" v-if="isEdit && item.name !== '推荐'">
               <template #content>
                 <van-icon
                   name="cross"
@@ -45,7 +45,7 @@
       </div>
       <!-- 更多频道列表 -->
       <van-row type="flex">
-        <van-col span="6" v-for="item in unChannelList" :key="item.id">
+        <van-col span="6" v-for="item in unChannelList" :key="item.id" @click="addFn(item)">
           <div class="channel-item van-hairline--surround">{{item.name}}</div>
         </van-col>
       </van-row>
@@ -55,6 +55,7 @@
 
 <script>
 import { allChannelListAPI } from '@/api/index.js'
+
 export default {
   data() {
     return {
@@ -82,6 +83,24 @@ export default {
         if(index === -1) return true
       })
     },
+  },
+  methods: {
+    // 新增频道
+    addFn(obj) {
+      // console.log(obj) //子传父
+      if(this.isEdit === true) {
+        this.$emit('addChannel', obj)
+      }
+    },
+    removeFn(obj) {
+      // id值不对
+      if (this.isEdit === true && obj.name !== '推荐') { //删除频道
+        this.$emit('removeChannel', obj)
+      } else {
+        this.$emit('changeChannel', obj)
+        this.$emit('close') // 关闭弹窗
+      }
+    }
   }
 }
 </script>

@@ -1,5 +1,6 @@
 // 接口方法, 只负责调用一个接口, 返回一个Promise对象
 import request from "@/untils/request"
+import store from "@/store/index.js";
 // 登录
 export const loginAPI = (data) => {
   return request.post("/v1_0/authorizations", data)
@@ -37,6 +38,16 @@ export const removeArticle = (target, type) => {
 //获取所有频道列表
 export const allChannelListAPI = () => {
   return request.get('/v1_0/channels')
+}
+
+// 更新用户频道列表
+export const updataChannel = (channels) => {
+  return request.put("/v1_0/user/channels", {
+    channels,
+    // headers: {
+    //   Authorization: 'Bearer ' + store.state.token
+    // }
+  })
 }
 
 

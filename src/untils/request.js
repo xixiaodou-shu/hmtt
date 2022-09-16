@@ -65,6 +65,10 @@ instance.interceptors.response.use(
   (response) => {
     console.log("post")
     Toast.clear();
+    // const token1 = store.state.tokenInfo.token;
+    // if (token1) {
+    //   response.headers.Authorization = `Bearer ${token1}`;
+    // }
     return response;
   },
   (error) => {

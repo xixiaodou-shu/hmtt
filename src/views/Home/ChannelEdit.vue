@@ -92,10 +92,13 @@ export default {
         this.$emit('addChannel', obj)
       }
     },
+    // 删除频道
     removeFn(obj) {
       // id值不对
+      // isEdit === true 
       if (this.isEdit === true && obj.name !== '推荐') { //删除频道
         this.$emit('removeChannel', obj)
+        // isEdit === false
       } else {
         this.$emit('changeChannel', obj)
         this.$emit('close') // 关闭弹窗

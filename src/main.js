@@ -3,9 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'amfe-flexible'
+import directivesObj from './untils/directives'
 // 引入Vant全局
 import { NavBar, Form, Field, Button,Tabbar, TabbarItem, Icon,
-  Tab, Tabs, Cell, List,PullRefresh, ActionSheet, Popup,Row, Col, Badge} from 'vant'
+  Tab, Tabs, Cell, List,PullRefresh, ActionSheet, Popup,Row, Col, Badge,
+  Search, Divider} from 'vant'
 Vue.use(NavBar)
 Vue.use(Form)
 Vue.use(Field)
@@ -23,6 +25,9 @@ Vue.use(Popup)
 Vue.use(Badge)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Search)
+Vue.use(directivesObj)
+Vue.use(Divider)
 Vue.config.productionTip = false
 
 new Vue({

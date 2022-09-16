@@ -5,6 +5,10 @@ import MyTest from '@/views/MyTest/MyTest.vue'
 import MyLayout from '@/views/Layout/index.vue'
 import MyHome from '@/views/Home/index.vue'
 import MyUser from '@/views/User/index.vue'
+import Search from '@/views/Search/index.vue'
+import SearchResult from '@/views/Search/SearchResult.vue'
+import ArticleDetail from '@/views/ArticleDetail/index.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,6 +32,20 @@ const routes = [
       { path:'home', component: MyHome },
       { path:'user', component: MyUser }
     ]
+  },
+  {
+    path:'/search',
+    component: Search
+  },
+  {
+    // 跳转传参在路径上传递(动态路由)  /search/:
+    path: '/search/:keywords',
+    component: SearchResult
+
+  },
+  {
+    path: '/article_detail',
+    component: ArticleDetail
   }
 ]
 

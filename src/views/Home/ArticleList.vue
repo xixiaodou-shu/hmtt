@@ -13,12 +13,15 @@
       :immediate-check="false"
     >
     <!-- 文章列表 -->
+    <!-- 组件绑定原生的点击事件@click.native 用@click不行 (使用修饰符) -->
+    
       <article-item
         v-for="item in articleList"
         :key="item.art_id"
         :obj="item"
         @dislike="dislikeFn"
         @reports="reportsFn"
+        @click.native="$router.push(`/article_detail?aid=${item.art_id}`)"
       ></article-item>
     </van-list>
   </van-pull-refresh>

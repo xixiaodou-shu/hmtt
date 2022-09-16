@@ -5,8 +5,9 @@
       <template #left>
         <img class="logo" :src="imgObj"/>
       </template>
+      <!-- 搜索 -->
       <template #right>
-        <van-icon name="search" size="0.48rem" color="#fff"/>
+        <van-icon name="search" size="0.48rem" color="#fff" @click="$router.push('/search')"/>
       </template>
     </van-nav-bar>
 
@@ -65,8 +66,9 @@ export default {
       // this.editFn(obj,'add')
       this.updateChannel()
     },
+    // 准备切换显示频道
     changeChannelFn(obj) {
-      console.log(obj)
+      console.log('准备切换显示频道', obj)
       this.channelId = obj.id // 传过来的频道ID, 影响tabs默认v-model的选择
     },
   // 统一更新频道

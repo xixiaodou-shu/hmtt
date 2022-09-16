@@ -28,8 +28,10 @@
           <span>{{obj.comm_count}}点评</span>
           <span>{{obj.pubdate}}</span>
         </div>
+        <!-- 首页x, 点击也跳转详情了, 原因: 事件冒泡, 解决 -->
         <!-- 反馈按钮 x号 show控制弹不弹出-->
-        <van-icon name="cross" @click="show = true" />
+        <!-- 事件冒泡, 触发事件的标签会逐级向父级传递这个事件 -->
+        <van-icon name="cross"  @click.stop="show = true" />
       </div>
     </template>
   </van-cell>

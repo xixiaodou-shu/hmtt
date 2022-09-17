@@ -7,7 +7,7 @@ import directivesObj from './untils/directives'
 // 引入Vant全局
 import { NavBar, Form, Field, Button,Tabbar, TabbarItem, Icon,
   Tab, Tabs, Cell, List,PullRefresh, ActionSheet, Popup,Row, Col, Badge,
-  Search, Divider} from 'vant'
+  Search, Divider,Tag, CellGroup} from 'vant'
 Vue.use(NavBar)
 Vue.use(Form)
 Vue.use(Field)
@@ -28,6 +28,8 @@ Vue.use(Col)
 Vue.use(Search)
 Vue.use(directivesObj)
 Vue.use(Divider)
+Vue.use(Tag)
+Vue.use(CellGroup)
 Vue.config.productionTip = false
 
 new Vue({

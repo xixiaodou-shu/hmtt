@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Header 区域 -->
-    <van-nav-bar fixed title="文章详情" left-arrow @click-left="$router.back()" />
+    <van-nav-bar fixed title="文章详情"  left-arrow @click-left="$router.back()" />
 
     <!-- 文章信息区域 -->
     <div class="article-container">
@@ -115,7 +115,9 @@ methods: {
 
 <style scoped lang="less">
 
-
+/deep/ .van-nav-bar__title {
+  color: white 
+}
 /deep/ .van-icon-arrow-left:before {
     
     color: white;

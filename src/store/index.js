@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { getUserInfoAPI, getUserProfileAPI } from "@/api";
+import { getUserInfoAPI, getUserProfileAPI } from "@/api/index.js";
 
 Vue.use(Vuex);
 
@@ -86,4 +86,11 @@ export default new Vuex.Store({
       }
     },
   },
-});
+})
+// 发布评论
+export const pubCommentAPI = (target, content) => {
+  return request.post("/v1_0/comments", {
+    target,
+    content,
+  })
+}

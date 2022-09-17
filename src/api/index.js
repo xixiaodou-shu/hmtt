@@ -1,6 +1,6 @@
 // 接口方法, 只负责调用一个接口, 返回一个Promise对象
 import request from "@/untils/request.js"
-import store from "@/store/index.js";
+// import store from "@/store/index.js"
 // 登录
 export const loginAPI = (data) => {
   return request.post("/v1_0/authorizations", data)
@@ -8,9 +8,18 @@ export const loginAPI = (data) => {
 
 // 用户获取频道列表
 export const getUserChannelAPI = () => {
-  return request.get("/v1_0/user/channels");
+  return request.get("/v1_0/user/channels")
 }
 
+// 获取用户简介信息
+export const getUserProfileAPI = () => {
+  return request.get("/v1_0/user/profile")
+}
+
+// 用户基本信息
+export const getUserInfoAPI = () => {
+  return request.get("/v1_0/user")
+}
 // 获取文章列表数据
 export const getArtListAPI = (id, time) => {
   return request.get("/v1_0/articles", {
@@ -102,14 +111,21 @@ export const getCmtListAPI = (source, offset) => {
   })
 }
 
-// export const loginAPI = (data) => {
-//   return request.post("/v1_0/authorizations", data)
-// }
-// // 用户基本信息
-// export const getUserInfoAPI = () => {
-//   return request.get("/v1_0/user");
-// };
-// // 获取用户简介信息
-// export const getUserProfileAPI = () => {
-//   return request.get("/v1_0/user/profile");
-// };
+// 评论点赞 API
+export const addLikeCmtAPI = (target) => {
+  return request.post("/v1_0/comment/likings", {
+    target,
+  })
+}
+// 取消评论点赞
+export const delLikeCmtAPI = (cmt_id) => {
+  return request.delete(`/v1_0/comment/likings/${cmt_id}`);
+}
+// 发布评论
+export const pubCommentAPI = (target, content) => {
+  return request.post("/v1_0/comments", {
+    target,
+    content,
+  })
+}
+

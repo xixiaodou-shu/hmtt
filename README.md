@@ -116,3 +116,9 @@ inputFn () {
   如果中间再次触发, 重新弄个计时器倒计时      
 6. 问题：post 401 get就不会  
 ```
+###  评论时候文本框弹出来，需要用到 this.$nextTick(()=>{
+```
+https://gitee.com/lidongxuwork/bilibili-matching-code/blob/master/Web%E5%89%8D%E7%AB%AF/5-%E6%A1%86%E6%9E%B6/V2.x/%E9%A1%B9%E7%9B%AE/%E9%BB%91%E9%A9%AC%E5%A4%B4%E6%9D%A1_%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B9%E7%9B%AE/%E9%85%8D%E5%A5%97%E7%AC%94%E8%AE%B0/01_%E6%88%91%E7%9A%84%E7%AC%94%E8%AE%B0/Day05_%E6%96%87%E7%AB%A0%E8%AF%84%E8%AE%BA_%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.md
+
+个人中心_编辑信息页面 401还没解决
+```

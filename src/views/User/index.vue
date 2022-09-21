@@ -6,7 +6,7 @@
       <van-cell>
         <!-- 使用 title 插槽来自定义标题 -->
         <template #icon>
-          <img src="" alt="" class="avatar">
+          <img :src="user.photo" alt="" class="avatar">
         </template>
         <template #title>
           <span class="username">用户名</span>
@@ -18,15 +18,15 @@
       <!-- 动态、关注、粉丝 -->
       <div class="user-data">
         <div class="user-data-item">
-          <span>0</span>
+          <span>{{user.art_count}}</span>
           <span>动态</span>
         </div>
         <div class="user-data-item">
-          <span>0</span>
+          <span>{{user.follow_count}}</span>
           <span>关注</span>
         </div>
         <div class="user-data-item">
-          <span>0</span>
+          <span>{{user.fans_count}}</span>
           <span>粉丝</span>
         </div>
       </div>
@@ -34,7 +34,8 @@
 
     <!-- 操作面板 -->
     <van-cell-group class="action-card">
-      <van-cell icon="edit" title="编辑资料" is-link />
+      <!-- 点击编辑选项单元格, 跳转路由 -->
+      <van-cell icon="edit" title="编辑资料" is-link  to='/user_editor'/>
       <van-cell icon="chat-o" title="小思同学" is-link />
       <van-cell icon="warning-o" title="退出登录" is-link @click="quit" />
     </van-cell-group>
@@ -53,9 +54,9 @@ export default {
     }
   },
   async created() {
-    const res = await getUserInfoAPI()
-    console.log(res)
-    this.user = res.data.data
+    const {data: res} = await getUserInfoAPI()
+    console.log('user', res)
+    this.user = res.data
   },
   methods: {
     quit() {
@@ -63,13 +64,16 @@ export default {
         title: '提示',
         message: '这就走了?不爱我了吗?'
       }).then(() => {
+      
         // 清空vuex和本地
-        console.log("清空vuex和本地")
-        this.setToken('')
+        console.log("清空vuex和本地",this)
+        // this.setToken('')
         // 跳到登录页
+        localStorage.setItem('token', '')
         this.$router.replace('/login')
-      }).catch(() => {
+      }).catch((err) => {
         // on cancel
+        return err;
       })
     },
 
@@ -79,6 +83,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+
 .user-container {
   .user-card {
     background-color: #007bff;

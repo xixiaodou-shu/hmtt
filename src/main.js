@@ -7,7 +7,7 @@ import directivesObj from './untils/directives'
 // 引入Vant全局
 import { NavBar, Form, Field, Button,Tabbar, TabbarItem, Icon,
   Tab, Tabs, Cell, List,PullRefresh, ActionSheet, Popup,Row, Col, Badge,
-  Search, Divider,Tag, CellGroup} from 'vant'
+  Search, Divider,Tag, CellGroup, Image, Dialog, DatetimePicker} from 'vant'
 Vue.use(NavBar)
 Vue.use(Form)
 Vue.use(Field)
@@ -30,6 +30,9 @@ Vue.use(directivesObj)
 Vue.use(Divider)
 Vue.use(Tag)
 Vue.use(CellGroup)
+Vue.use(Image)
+Vue.use(Dialog)
+Vue.use(DatetimePicker)
 Vue.config.productionTip = false
 
 new Vue({

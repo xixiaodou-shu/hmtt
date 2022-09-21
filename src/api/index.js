@@ -129,3 +129,11 @@ export const pubCommentAPI = (target, content) => {
   })
 }
 
+// 更新头像
+export const updateUserAvatarAPI = (fd) => {
+  return request.patch("/v1_0/user/photo", fd)
+}
+// 修改用户简介信息
+export const updateUserProfileAPI = (obj) => {
+  return request.patch("/v1_0/user/profile", obj)
+}

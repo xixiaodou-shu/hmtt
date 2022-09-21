@@ -39,7 +39,9 @@
 
 <script>
 import { loginAPI } from '@/api'
-import store from '@/store'
+import store from '@/store/index.js'
+// 引入 vuex
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -51,6 +53,8 @@ export default {
     }
   },
   methods: {
+    // 使用 vuex 里面的数据 Mutations
+    ...mapMutations(["updateTokenInfo"]),
     async onSubmit() {
       // console.log('this.formLogin', this.formLogin)
       // const { data: res } = await loginAPI(this.formLogin)
@@ -59,7 +63,7 @@ export default {
       //   // this.updateTokenInfo(res.data)
       //   // this.$router.push("/")
       // }
-      this.isLoading = true
+/*       this.isLoading = true
       try {
         // 此处data就是res.data 解构赋值
         const { data: res } = await loginAPI(this.formLogin)
@@ -79,6 +83,15 @@ export default {
       } catch (error) {
         console.log(error)
         this.isLoading = false
+      } */
+      // await axios.post("http://www.liulongbin.top:8000/v1_0/authorizations", data)
+      const { data: res } = await loginAPI(this.formLogin);
+      if (res.message === "OK") {
+        console.log('登录',res.data)
+        // token  refresh_token
+        //  // 更新 用户基本信息 == 将 state 数据 持久化存储在 localStorage
+        this.updateTokenInfo(res.data);
+        this.$router.push("/layout");
       }
     }
   }

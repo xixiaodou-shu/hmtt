@@ -12,11 +12,13 @@
             :src="obj.cover.images[0]"
             v-if="obj.cover.type === 1 " />
        </div>
-      	<!-- 三张图片 -->
+      	<!-- 三张图片:src="imgUrl" 图片懒加载 -->
       <div class="thumb-box" v-if="obj.cover.type > 1">
           <img class="thumb" v-for="(imgUrl, index) in obj.cover.images"
           :key="index"
-          :src="imgUrl" />
+          
+          v-lazy="imgUrl"
+          />
   
         </div>
     </template>

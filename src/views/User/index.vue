@@ -9,7 +9,7 @@
           <img :src="user.photo" alt="" class="avatar">
         </template>
         <template #title>
-          <span class="username">用户名</span>
+          <span class="username">{{user.name}}</span>
         </template>
         <template #label>
           <van-tag color="#fff" text-color="#007bff">申请认证</van-tag>
@@ -34,9 +34,9 @@
 
     <!-- 操作面板 -->
     <van-cell-group class="action-card">
-      <!-- 点击编辑选项单元格, 跳转路由 -->
-      <van-cell icon="edit" title="编辑资料" is-link  to='/user_editor'/>
-      <van-cell icon="chat-o" title="小思同学" is-link />
+      <!-- 点击编辑选项单元格, 跳转路由 van-cell有to属性也能跳转路由 -->
+      <van-cell icon="edit" title="编辑资料" is-link  to='/user_editor' />
+      <van-cell icon="chat-o" title="小思同学" is-link  to="/chat"/>
       <van-cell icon="warning-o" title="退出登录" is-link @click="quit" />
     </van-cell-group>
   </div>
@@ -53,6 +53,7 @@ export default {
       user: {} // 用户对象
     }
   },
+  // async activated(){
   async created() {
     const {data: res} = await getUserInfoAPI()
     console.log('user', res)

@@ -12,7 +12,10 @@
     </van-nav-bar>
 
     <!-- 频道部分 点击频道v-model变量绑定对应name值, 即频道ID-->
-    <van-tabs v-model="channelId" animated sticky offset-top="1.226667rem">
+    <van-tabs v-model="channelId" animated sticky offset-top="1.226667rem" 
+    :before-change="tabBeforeChangeFn"
+    @change="tabsChangeFn"
+    >
         <van-tab v-for="item in channelList" :key="item.id" :title="item.name">
           <!-- {{item.name}} -->
         <article-list :cid="channelId"></article-list>
@@ -40,7 +43,8 @@ import { getUserChannelAPI, updataChannel } from '@/api/index.js'
 import ArticleList from '@/views/Home/ArticleList.vue'
 import ChannelEdit from './ChannelEdit.vue'
 // import { Notify } from 'vant'
-
+// “频道名称”和“滚动条位置”之间的对应关系，格式 { '推荐ID': 211, 'htmlID': 30, '开发者资讯ID': 890 }
+const nameToTop = {}
 export default {
   components: {
     ArticleList,
@@ -61,6 +65,20 @@ export default {
     this.channelList = res.data.data.channels
   },
   methods: {
+    // 频道切换之前触发
+    tabBeforeChangeFn () {
+      nameToTop[this.channelId] = window.scrollY // 先保存要被切走频道的滚动距离(一定要用哦this.channelId里存着的)
+      // 只有return true才会让tabs切换
+      return true
+    },
+    // 频道切换后
+    tabsChangeFn(channelId) {
+      console.log('tabsChangeFn',channelId)
+      // 等 DOM 更新完毕之后，根据记录的"滚动条位置"，调用 window.scrollTo() 方法进行滚动
+      this.$nextTick(() => {
+        window.scrollTo(0, nameToTop[channelId] || 0)
+      })
+    },
     addChannelFn(obj) {
       this.channelList.push(obj)
       // this.editFn(obj,'add')

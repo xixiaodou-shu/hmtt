@@ -2,7 +2,6 @@
   <div class="user-edit-container">
     <!-- Header 区域 -->
     <van-nav-bar title="编辑资料" left-arrow @click-left="$router.back()" fixed />
-
     <!-- 用户资料 -->
     <van-cell-group class="action-card">
       <van-cell title="头像" is-link center >

@@ -137,3 +137,5 @@ export const updateUserAvatarAPI = (fd) => {
 export const updateUserProfileAPI = (obj) => {
   return request.patch("/v1_0/user/profile", obj)
 }
+
+

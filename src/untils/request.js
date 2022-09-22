@@ -1,9 +1,8 @@
 // 网络请求模块
 import axios from "axios"
-
 import { Toast } from "vant"
-
 import store from "@/store/index.js"
+import router from '@/router'
 
 const instance = axios.create({
   // 请求根路径
@@ -30,6 +29,7 @@ instance.interceptors.request.use(
     return config
   },
   (error) => {
+    console.log("error", error)
     return Promise.reject(error)
   }
 )
@@ -42,6 +42,14 @@ instance.interceptors.response.use(
     return response
   },
   (error) => {
+    console.log("response error", error)
+    if (error.response.status === 401) { // 身份过期
+      console.log('// 身份过期')
+      store.commit('cleanState', '')
+      console.log('router', router)
+      console.log(router.currentRoute.fullPath)
+      router.push({ path: `/login?path=${router.currentRoute.fullPath}` })
+    }
     return Promise.reject(error)
   }
 )
